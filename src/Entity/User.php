@@ -71,7 +71,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $roles[] = 'ROLE_USER';
         }
 
-        return implode(',', array_unique($roles));
+        return array_unique($roles);
     }
 
     /**

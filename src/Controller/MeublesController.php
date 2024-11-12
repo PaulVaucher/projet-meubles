@@ -15,6 +15,7 @@ use App\Repository\MeublesRepository; // Importation de la classe Repository pou
 class MeublesController extends AbstractController
 {
 
+
 #[Route('/meubles', name: 'meubles_list')] // La route pour afficher la liste des meubles depuis la BDD
 public function listMeubles(MeublesRepository $meublesRepository): Response
 {
@@ -29,7 +30,7 @@ public function listMeubles(MeublesRepository $meublesRepository): Response
 
 
     // 1. Ajouter un meuble à la base de données
-    #[Route('/add-meubles', name: 'create_meubles', methods: ['POST'])] // La route pour ajouter un meuble avec méthode POST
+    #[Route('/add-meubles', name: 'create_meubles', methods: ['GET','POST'])] // La route pour ajouter un meuble avec méthode POST
     public function create_meubles(EntityManagerInterface $entityManager): JsonResponse // La fonction pour ajouter un meuble
     {
         // On crée une nouvelle instance de l'entité Meubles
@@ -61,7 +62,7 @@ public function listMeubles(MeublesRepository $meublesRepository): Response
     }
 
     // 2. Modifier un meuble existant
-    #[Route('/change-meubles/{id}', name: 'modify_meubles', methods: ['PUT'])] //  La route pour modifier un meuble avec méthode PUT
+    #[Route('/change-meubles/{id}', name: 'modify_meubles', methods: ['GET','PUT'])] //  La route pour modifier un meuble avec méthode PUT
     public function modify_meubles(EntityManagerInterface $entityManager, string $id): JsonResponse
     {
         // On cherche le meuble en utilisant l'ID passé dans l'URL
@@ -98,7 +99,7 @@ public function listMeubles(MeublesRepository $meublesRepository): Response
     }
 
     // 3. Supprimer un meuble de la base de données
-    #[Route('/remove-meubles/{id}', name: 'remove_meubles', methods: ['DELETE'])] // La route pour supprimer un meuble avec methode DELETE
+    #[Route('/remove-meubles/{id}', name: 'remove_meubles', methods: ['GET','DELETE'])] // La route pour supprimer un meuble avec methode DELETE
     public function remove_meubles(EntityManagerInterface $entityManager, string $id): JsonResponse
     {
         // On cherche le meuble dans la base de données avec l'ID fourni

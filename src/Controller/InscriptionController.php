@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface; // Correct import
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class InscriptionController extends AbstractController
 {
@@ -17,16 +17,16 @@ class InscriptionController extends AbstractController
     {
         // Crée un nouvel utilisateur
         $user = new User();
-        
+
         // Crée le formulaire d'inscription
         $form = $this->createForm(RegistrationFormType::class, $user);
-        
+
         // Gère la soumission du formulaire
         $form->handleRequest($request);
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
             // Encoder le mot de passe
-            $hashedPassword = $passwordHasher->hash($form->get('password')->getData());
+            $hashedPassword = $passwordHasher->hashPassword($user, $form->get('password')->getData());
             $user->setPassword($hashedPassword);
 
             // Le rôle par défaut pour un nouvel utilisateur
@@ -37,7 +37,7 @@ class InscriptionController extends AbstractController
             $entityManager->flush();
 
             // Redirige l'utilisateur vers la page de connexion après l'inscription
-            return $this->redirectToRoute('app_homepage');
+            return $this->redirectToRoute('app_home');
         }
 
         // Afficher le formulaire d'inscription
@@ -46,4 +46,3 @@ class InscriptionController extends AbstractController
         ]);
     }
 }
-
