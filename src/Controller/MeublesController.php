@@ -79,12 +79,12 @@ public function listMeubles(MeublesRepository $meublesRepository): JsonResponse
         }
 
         // Mise à jour des propriétés du meuble
-        $meuble->setType('meuble retest'); // Nouveau type
-        $meuble->setPrix(665); // Nouveau prix
-        $meuble->setCouleur('blouge'); // Nouvelle couleur
-        $meuble->setMatiere('spectrale'); // Nouvelle matière
-        $meuble->setDimensions('1 x 1 x 1'); // Nouvelles dimensions
-        $meuble->setPhotos('images/pexels-pnw-prod-8250979.jpg'); // Nouvelle image
+        $meuble->setType('Bibliothèque'); // Nouveau type
+        $meuble->setPrix(165); // Nouveau prix
+        $meuble->setCouleur('rustique'); // Nouvelle couleur
+        $meuble->setMatiere('bois'); // Nouvelle matière
+        $meuble->setDimensions('161 x 158 '); // Nouvelles dimensions
+        $meuble->setPhotos('/biblio.jpeg'); // Nouvelle image
 
         // Doctrine va mettre à jour l'enregistrement dans la base de données
         $entityManager->flush();
